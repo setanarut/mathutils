@@ -2,6 +2,42 @@ package mathutils
 
 import "math"
 
+const (
+	degToRad = math.Pi / 180.0
+	radToDeg = 180.0 / math.Pi
+)
+
+// Radians converts an angle measured in degrees to its value in radians.
+func Radians(degrees float64) float64 {
+	return degrees * degToRad
+}
+
+// Degrees converts an angle measured in radians to its value in degrees.
+func Degrees(radians float64) float64 {
+	return radians * radToDeg
+}
+
+// MapRange maps a value v from one range [a, b] to another range [c, d].
+func MapRange(v, a, b, c, d float64) float64 {
+	return (v-a)/(b-a)*(d-c) + c
+}
+
+// Fract returns the fractional part of x.
+func Fract(x float64) float64 {
+	return x - math.Floor(x)
+}
+
+// Clamp returns value clamped to [low, high]
+func Clamp(value, low, high float64) float64 {
+	if value < low {
+		return low
+	}
+	if value > high {
+		return high
+	}
+	return value
+}
+
 // LinSpace returns a slice of float64 values spaced evenly between min and max.
 //
 // If n is less than or equal to 1, it returns a slice with only the min value.
@@ -30,14 +66,4 @@ func SinSpace(amplitude float64, n int) []float64 {
 		tValues[i] = math.Sin(t) * amplitude
 	}
 	return tValues
-}
-
-// MapRange maps a value v from one range [a, b] to another range [c, d].
-func MapRange(v, a, b, c, d float64) float64 {
-	return (v-a)/(b-a)*(d-c) + c
-}
-
-// Fract returns the fractional part of x.
-func Fract(x float64) float64 {
-	return x - math.Floor(x)
 }
