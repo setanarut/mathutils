@@ -1,11 +1,15 @@
 package mathutils
 
-import "math"
+import (
+	"math"
+)
+
+// Tau is two times pi, representing a full circle in radians. https://oeis.org/A019692
+const Tau = 6.2831853071795864769252867665590057683943387987502
 
 const (
-	degToRad = math.Pi / 180.0
-	radToDeg = 180.0 / math.Pi
-	twoPi    = math.Pi * 2.0
+	degToRad float64 = math.Pi / 180.0
+	radToDeg float64 = 180.0 / math.Pi
 )
 
 // Radians converts an angle measured in degrees to its value in radians.
@@ -25,16 +29,20 @@ func MapRange(v, a, b, c, d float64) float64 {
 
 // Fract returns the fractional part of x.
 func Fract(x float64) float64 {
-	return x - math.Floor(x)
+	if x >= 0 {
+		return x - math.Floor(x)
+	}
+	return x - math.Ceil(x)
 }
 
-// Clamp returns value clamped to [low, high]
-func Clamp(value, low, high float64) float64 {
-	if value < low {
-		return low
+// Clamp returns value clamped to [min, max]
+func Clamp(value, min, max float64) float64 {
+
+	if value < min {
+		return min
 	}
-	if value > high {
-		return high
+	if value > max {
+		return max
 	}
 	return value
 }
@@ -62,7 +70,7 @@ func LinSpace(min, max float64, n int) []float64 {
 //	amplitude // Amplitude of the sine wave
 //	n // Number of points
 func SinSpace(amplitude float64, n int) []float64 {
-	tValues := LinSpace(0, twoPi, n)
+	tValues := LinSpace(0, Tau, n)
 	for i, t := range tValues {
 		tValues[i] = math.Sin(t) * amplitude
 	}
