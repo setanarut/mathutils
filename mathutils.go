@@ -5,6 +5,7 @@ import "math"
 const (
 	degToRad = math.Pi / 180.0
 	radToDeg = 180.0 / math.Pi
+	twoPi    = math.Pi * 2.0
 )
 
 // Radians converts an angle measured in degrees to its value in radians.
@@ -61,7 +62,7 @@ func LinSpace(min, max float64, n int) []float64 {
 //	amplitude // Amplitude of the sine wave
 //	n // Number of points
 func SinSpace(amplitude float64, n int) []float64 {
-	tValues := LinSpace(0, math.Pi*2, n)
+	tValues := LinSpace(0, twoPi, n)
 	for i, t := range tValues {
 		tValues[i] = math.Sin(t) * amplitude
 	}
