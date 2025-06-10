@@ -47,6 +47,13 @@ func Clamp(value, min, max float64) float64 {
 	return value
 }
 
+// Lerp performs linear interpolation between start and end based on t.
+// t should be in the range [0, 1] where 0 returns start and 1 returns end.
+// If t is outside this range, it will extrapolate.
+func Lerp(start, end, t float64) float64 {
+	return start + t*(end-start)
+}
+
 // LinSpace returns a slice of float64 values spaced evenly between min and max.
 //
 // If n is less than or equal to 1, it returns a slice with only the min value.
@@ -75,4 +82,14 @@ func SinSpace(amplitude float64, n int) []float64 {
 		tValues[i] = math.Sin(t) * amplitude
 	}
 	return tValues
+}
+
+// OppositeAngle returns opposite angle. Unit is radians.
+// It adds π to the angle and wraps it around if it exceeds 2π.
+func OppositeAngle(angle float64) float64 {
+	result := angle + math.Pi
+	if result >= Tau {
+		return result - Tau
+	}
+	return result
 }
