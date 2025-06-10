@@ -1,8 +1,10 @@
-package mathutils
+package mathutils_test
 
 import (
 	"math"
 	"testing"
+
+	"github.com/setanarut/mathutils"
 )
 
 func TestLerp(t *testing.T) {
@@ -20,7 +22,7 @@ func TestLerp(t *testing.T) {
 		{0, 10, 1.5, 15},
 	}
 	for _, tt := range tests {
-		got := Lerp(tt.start, tt.end, tt.t)
+		got := mathutils.Lerp(tt.start, tt.end, tt.t)
 		if math.Abs(got-tt.want) > 1e-9 {
 			t.Errorf("Lerp(%v, %v, %v) = %v; want %v", tt.start, tt.end, tt.t, got, tt.want)
 		}
@@ -33,7 +35,7 @@ func TestLinSpace(t *testing.T) {
 		max := 10.0
 		n := 5
 		want := []float64{0, 2.5, 5, 7.5, 10}
-		got := LinSpace(min, max, n)
+		got := mathutils.LinSpace(min, max, n)
 		for i := range got {
 			if math.Abs(got[i]-want[i]) > 1e-9 {
 				t.Errorf("LinSpace(%v, %v, %v)[%d] = %v; want %v", min, max, n, i, got[i], want[i])
@@ -53,7 +55,7 @@ func TestOppositeAngle(t *testing.T) {
 		{math.Pi / 4, 5 * math.Pi / 4},
 	}
 	for _, tt := range tests {
-		got := OppositeAngle(tt.angle)
+		got := mathutils.OppositeAngle(tt.angle)
 		if math.Abs(got-tt.want) > 1e-9 {
 			t.Errorf("OppositeAngle(%v) = %v; want %v", tt.angle, got, tt.want)
 		}
