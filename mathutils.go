@@ -4,8 +4,10 @@ import (
 	"math"
 )
 
-// Tau is two times pi, representing a full circle in radians. https://oeis.org/A019692
+// Tau (τ) is two times pi , representing a full circle in radians. https://oeis.org/A019692
 const Tau = 6.2831853071795864769252867665590057683943387987502
+// Phi (φ) is golden ratio. https://oeis.org/A001622/constant
+const Phi = 1.6180339887498948482045868343656381177203091798058
 
 const (
 	degToRad float64 = math.Pi / 180.0
