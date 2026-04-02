@@ -4,14 +4,18 @@ import (
 	"math"
 )
 
-// Tau (τ) is two times pi , representing a full circle in radians. https://oeis.org/A019692
-const Tau = 6.2831853071795864769252867665590057683943387987502
-// Phi (φ) is golden ratio. https://oeis.org/A001622/constant
-const Phi = 1.6180339887498948482045868343656381177203091798058
-
 const (
-	degToRad float64 = math.Pi / 180.0
-	radToDeg float64 = 180.0 / math.Pi
+// Tau (τ) is two times pi , representing a full circle in radians. https://oeis.org/A019692
+Tau = 6.2831853071795864769252867665590057683943387987502
+
+// Phi (φ) is golden ratio. https://oeis.org/A001622/constant
+Phi = 1.6180339887498948482045868343656381177203091798058
+
+// Golden angle in radians (4-2*Phi)*Pi https://oeis.org/A131988/constant
+GoldenAngle 2.3999632297286533222315555066336138531249990110581
+
+degToRad float64 = math.Pi / 180.0
+radToDeg float64 = 180.0 / math.Pi
 )
 
 // Radians converts an angle measured in degrees to its value in radians.
